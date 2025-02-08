@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互动网页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #007BFF;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+        #gameSection {
+            margin-top: 20px;
+        }
+        #gameSection p {
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>互动网页</h1>
+        <p>你想知道谁是傻逼吗？</p>
+        <button onclick="startGame()">想</button>
+
+        <!-- 游戏部分 -->
+        <div id="gameSection" class="hidden">
+            <p>点击按钮10次，完成挑战：</p>
+            <button onclick="clickCounter()">点击我</button>
+            <p id="clickCount">已点击次数：0/10</p>
+        </div>
+
+        <!-- 结果部分 -->
+        <div id="resultSection" class="hidden">
+            <p id="resultMessage"></p>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+
+        function startGame() {
+            document.querySelector('button').style.display = 'none';
+            document.getElementById('gameSection').classList.remove('hidden');
+        }
+
+        function clickCounter() {
+            clickCount++;
+            document.getElementById('clickCount').textContent = `已点击次数：${clickCount}/10`;
+
+            if (clickCount === 10) {
+                document.getElementById('gameSection').classList.add('hidden');
+                document.getElementById('resultSection').classList.remove('hidden');
+                document.getElementById('resultMessage').textContent = '崔泽浩';
+            }
+        }
+    </script>
+</body>
+</html>
